@@ -19,10 +19,18 @@ for (let i = 0; i <= 5; i++) {
   corners.push(hexCornerFlat(center, 20, i));
 }
 
-console.log(corners);
-for (var name in corners) {
-  console.log(name.x);
+let points = []; // массив где будут храниться точки
+// console.log(corners);
+for (let name in corners) {
+  points.push(corners[name].x);
+  points.push(',');
+  points.push(corners[name].y);
+  points.push(' ');
 }
+// console.log(points);
+let pointsToString = points.join(''); // преобразованный в строку массив точек
+// console.log(pointsToString);
+
 // canvas drawing:
 
 
