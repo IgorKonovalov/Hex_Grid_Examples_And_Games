@@ -40,21 +40,19 @@ cx.fillStyle = "blue";
 cx.fill();
 cx.closePath();
 
+const testDiv = document.getElementsByClassName('test')[0];
+const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+const svgNS = svg.namespaceURI;
 
 // svg drawing
+let coordX = 10;
+let coordY = 10;
+const g = document.createElementNS(svgNS, 'g');
+g.setAttribute('class', 'tile');
+g.setAttribute('transform', 'translate('+ coordX + ',' + coordY + ')');
+const hex = document.createElementNS(svgNS,'polygon')
+hex.setAttribute('points', pointsToString);
+svg.appendChild(g);
+g.appendChild(hex);
 
-const svgDiv = document.getElementsByClassName('svg_container')[0];
-let svg = document.createElement('svg');
-svg.setAttribute('width', '300');
-svg.setAttribute('height', '300');
-
-svgDiv.appendChild(svg);
-
-for (let i = 0; i < 1; i++) {
-  let g = document.createElement('g');
-  g.className = 'tile';
-  let hex = document.createElement('polygon')
-  hex.setAttribute('points', pointsToString);
-  g.appendChild(hex);
-  svg.appendChild(g);
-}
+testDiv.appendChild(svg);
