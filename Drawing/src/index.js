@@ -1,7 +1,7 @@
 console.log('hello');
 const cx = document.querySelector("canvas").getContext("2d");
 
-function hexCorner(center, size, i) {
+function hexCornerFlat(center, size, i) {
   let point = {};
   let angle_deg = 60 * i;
   let angle_rad = Math.PI / 180 * angle_deg;
@@ -10,14 +10,21 @@ function hexCorner(center, size, i) {
   return point;
 }
 
-// canvas drawing:
+// getting points of hex
 
 let center = {x: 100, y: 100};
 let corners = [];
 
 for (let i = 0; i <= 5; i++) {
-  corners.push(hexCorner(center, 30, i));
+  corners.push(hexCornerFlat(center, 20, i));
 }
+
+console.log(corners);
+for (var name in corners) {
+  console.log(name.x);
+}
+// canvas drawing:
+
 
 cx.beginPath();
 cx.moveTo(corners[0].x, corners[0].y);
@@ -27,3 +34,23 @@ for (let i = 1; i <= 5; i++){
 cx.fillStyle = "blue";
 cx.fill();
 cx.closePath();
+
+
+// svg drawing
+
+const svgDiv = document.getElementsByClassName('svg_container')[0];
+let svg = document.createElement('svg');
+svg.setAttribute('width', '300');
+svg.setAttribute('height', '300');
+
+let hex = document.createElement('polygon')
+hex.setAttribute('points', corners);
+svgDiv.appendChild(svg);
+let g;
+for (let i = 0; i < 50; i++) {
+  g = document.createElement('g');
+  g.className = 'tile';
+  svg.appendChild(g);
+}
+
+g.appendChild(hex);
