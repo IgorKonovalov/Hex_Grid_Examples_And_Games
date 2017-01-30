@@ -12,7 +12,7 @@ function hexCornerFlat(center, size, i) {
 
 // получение точек - углов шестиугольника
 
-let center = {x: 100, y: 100};
+let center = {x: 20, y: 20};
 let corners = [];
 
 for (let i = 0; i <= 5; i++) {
@@ -43,16 +43,22 @@ cx.closePath();
 const testDiv = document.getElementsByClassName('test')[0];
 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 const svgNS = svg.namespaceURI;
+svg.setAttributeNS(null, "width", "800px");
+svg.setAttributeNS(null, "height", "200px");
+
 
 // svg drawing
 let coordX = 10;
 let coordY = 10;
-const g = document.createElementNS(svgNS, 'g');
-g.setAttribute('class', 'tile');
-g.setAttribute('transform', 'translate('+ coordX + ',' + coordY + ')');
-const hex = document.createElementNS(svgNS,'polygon')
-hex.setAttribute('points', pointsToString);
-svg.appendChild(g);
-g.appendChild(hex);
+for (let i = 0; i <= 10; i++) {
+  coordX = coordX + 60;
+  const g = document.createElementNS(svgNS, 'g');
+  g.setAttribute('class', 'tile');
+  g.setAttribute('transform', 'translate('+ coordX + ',' + coordY + ')');
+  const hex = document.createElementNS(svgNS,'polygon')
+  hex.setAttribute('points', pointsToString);
+  svg.appendChild(g);
+  g.appendChild(hex);
+}
 
 testDiv.appendChild(svg);
