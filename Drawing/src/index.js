@@ -10,11 +10,13 @@ function hexCorner(center, size, i) {
   return point;
 }
 
-let center = {x: 300, y: 300};
+// canvas drawing:
+
+let center = {x: 100, y: 100};
 let corners = [];
 
 for (let i = 0; i <= 5; i++) {
-  corners.push(hexCorner(center, 150, i));
+  corners.push(hexCorner(center, 30, i));
 }
 
 cx.beginPath();
