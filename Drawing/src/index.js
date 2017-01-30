@@ -10,7 +10,7 @@ function hexCornerFlat(center, size, i) {
   return point;
 }
 
-// getting points of hex
+// получение точек - углов шестиугольника
 
 let center = {x: 100, y: 100};
 let corners = [];
@@ -20,16 +20,13 @@ for (let i = 0; i <= 5; i++) {
 }
 
 let points = []; // массив где будут храниться точки
-// console.log(corners);
 for (let name in corners) {
   points.push(corners[name].x);
   points.push(',');
   points.push(corners[name].y);
   points.push(' ');
 }
-// console.log(points);
 let pointsToString = points.join(''); // преобразованный в строку массив точек
-// console.log(pointsToString);
 
 // canvas drawing:
 
@@ -51,14 +48,13 @@ let svg = document.createElement('svg');
 svg.setAttribute('width', '300');
 svg.setAttribute('height', '300');
 
-let hex = document.createElement('polygon')
-hex.setAttribute('points', corners);
 svgDiv.appendChild(svg);
-let g;
-for (let i = 0; i < 50; i++) {
-  g = document.createElement('g');
+
+for (let i = 0; i < 1; i++) {
+  let g = document.createElement('g');
   g.className = 'tile';
+  let hex = document.createElement('polygon')
+  hex.setAttribute('points', pointsToString);
+  g.appendChild(hex);
   svg.appendChild(g);
 }
-
-g.appendChild(hex);
