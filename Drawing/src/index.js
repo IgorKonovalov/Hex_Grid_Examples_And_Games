@@ -1,5 +1,6 @@
 console.log('hello');
 const cx = document.querySelector("canvas").getContext("2d");
+const size = 20;
 
 function hexCornerFlat(center, size, i) {
   let point = {};
@@ -16,7 +17,7 @@ let center = {x: 20, y: 20};
 let corners = [];
 
 for (let i = 0; i <= 5; i++) {
-  corners.push(hexCornerFlat(center, 20, i));
+  corners.push(hexCornerFlat(center, size, i));
 }
 
 let points = []; // массив где будут храниться точки
@@ -50,15 +51,33 @@ svg.setAttributeNS(null, "height", "200px");
 // svg drawing
 let coordX = 10;
 let coordY = 10;
-for (let i = 0; i <= 10; i++) {
-  coordX = coordX + 60;
-  const g = document.createElementNS(svgNS, 'g');
-  g.setAttribute('class', 'tile');
-  g.setAttribute('transform', 'translate('+ coordX + ',' + coordY + ')');
-  const hex = document.createElementNS(svgNS,'polygon')
-  hex.setAttribute('points', pointsToString);
-  svg.appendChild(g);
-  g.appendChild(hex);
+let width = size * 2;
+let height = (Math.sqrt(3) / 2) * width;
+let widthInc = 3 * (width / 4);
+let column = 0;
+for (let x = width / 2; x < 400; x += widthInc) {
+  let startY = ((column % 2) == 0) ? height : height / 2;
+  for (let y = startY; y < 160; y += height) {
+    const g = document.createElementNS(svgNS, 'g');
+    g.setAttribute('class', 'tile');
+    g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
+    const hex = document.createElementNS(svgNS,'polygon')
+    hex.setAttribute('points', pointsToString);
+    svg.appendChild(g);
+    g.appendChild(hex);
+  }
+  column++;
 }
+
+// for (let i = 0; i <= 10; i++) {
+//   coordX = coordX + size * 3;
+//   const g = document.createElementNS(svgNS, 'g');
+//   g.setAttribute('class', 'tile');
+//   g.setAttribute('transform', 'translate('+ coordX + ',' + coordY + ')');
+//   const hex = document.createElementNS(svgNS,'polygon')
+//   hex.setAttribute('points', pointsToString);
+//   svg.appendChild(g);
+//   g.appendChild(hex);
+// }
 
 testDiv.appendChild(svg);
