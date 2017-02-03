@@ -65,6 +65,9 @@ for (let x = width / 2; x < 400; x += widthInc) {
     hex.setAttribute('points', pointsToString);
     svg.appendChild(g);
     g.appendChild(hex);
+    hex.addEventListener('click', function(event) {
+      console.log(event);
+    })
   }
   column++;
 }

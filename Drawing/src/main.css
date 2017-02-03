@@ -7,3 +7,7 @@
     stroke: hsl(0, 0%, 70%);
     stroke-width: 0.5;
 }
+
+.tile polygon:hover {
+  fill: rgba(255, 0, 0, 0.5);
+}
