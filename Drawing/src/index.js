@@ -72,15 +72,4 @@ for (let x = width / 2; x < 400; x += widthInc) {
   column++;
 }
 
-// for (let i = 0; i <= 10; i++) {
-//   coordX = coordX + size * 3;
-//   const g = document.createElementNS(svgNS, 'g');
-//   g.setAttribute('class', 'tile');
-//   g.setAttribute('transform', 'translate('+ coordX + ',' + coordY + ')');
-//   const hex = document.createElementNS(svgNS,'polygon')
-//   hex.setAttribute('points', pointsToString);
-//   svg.appendChild(g);
-//   g.appendChild(hex);
-// }
-
 testDiv.appendChild(svg);
