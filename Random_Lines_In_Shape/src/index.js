@@ -15,8 +15,17 @@ function arrayToPoints(array) {
 }
 
 function randomPointsOnLine(start, end) { // случайная точка на линии
-  let length = 
+  let line = Math.sqrt(Math.pow((start.x - end.x), 2) + Math.pow((start.y - end.y),2));
+  let randomLength = Math.random() * line;
+  let point = {};
+  point.x = start.x - (randomLength * (start.x - end.x)) / line;
+  point.y = start.y - (randomLength * (start.y - end.y)) / line;
+  return point;
 }
+let start = {x: 10, y: 10};
+let end = {x: 13, y: 8};
+randomPointsOnLine(start, end);
+
 
 // обьекты
 
