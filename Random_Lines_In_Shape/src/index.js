@@ -22,9 +22,19 @@ function randomPointsOnLine(start, end) { // случайная точка на 
   point.y = start.y - (randomLength * (start.y - end.y)) / line;
   return point;
 }
+
+function middlePointOnLine(start, end) {
+  let line = Math.sqrt(Math.pow((start.x - end.x), 2) + Math.pow((start.y - end.y),2));
+  let middleLength = line / 2;
+  let point = {};
+  point.x = start.x - (middleLength * (start.x - end.x)) / line;
+  point.y = start.y - (middleLength * (start.y - end.y)) / line;
+  return point;
+}
+
 let start = {x: 10, y: 10};
 let end = {x: 13, y: 8};
-randomPointsOnLine(start, end);
+console.log(middlePointOnLine(start, end));
 
 
 // обьекты
