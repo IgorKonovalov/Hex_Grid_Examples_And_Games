@@ -60,6 +60,10 @@ HexObject.prototype.hexCornersFlat = function() {
   this.corners = corners; // записываем в свойство
 };
 
+HexObject.prototype.draw = function () {
+
+};
+
 
 let centerHex = {x: 100, y: 100};
 let hex = new HexObject(centerHex, sizeHex);

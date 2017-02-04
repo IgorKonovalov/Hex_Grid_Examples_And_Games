@@ -31,7 +31,6 @@ let pointsToString = points.join(''); // преобразованный в ст�
 
 // canvas drawing:
 
-
 cx.beginPath();
 cx.moveTo(corners[0].x, corners[0].y);
 for (let i = 1; i <= 5; i++){
