@@ -120,15 +120,21 @@ cx.stroke();
 // рисуем линии по сторонам шестиугольника random!
 cx.beginPath();
 cx.moveTo(hex.edgePoints[0][0].x, hex.edgePoints[0][0].y);
-hex.edgePoints.forEach(function(hex, i) {
+hex.edgePoints.forEach((hex) => {
   for (let i = 0; i <= 5; i++){
     let random = randomInteger(0,5);
     cx.lineTo(hex[random].x, hex[random].y);
   }
-})
+});
 cx.stroke();
 
-// SVG - положить внутрь?
+/*
+███████ ██    ██  ██████
+██      ██    ██ ██
+███████ ██    ██ ██   ███
+     ██  ██  ██  ██    ██
+███████   ████    ██████
+*/
 
 const hexDiv = document.getElementById('hex');
 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -136,26 +142,28 @@ const svgNS = svg.namespaceURI;
 svg.setAttributeNS(null, "width", "800px");
 svg.setAttributeNS(null, "height", "400px");
 
-let hexSVG = new HexObject({x: 20, y: 20}, 40);
+// preparations
+
+let hexSVG = new HexObject({x: 20, y: 20}, 60);
 hexSVG.hexCornersFlat();
-console.log(hexSVG);
+for (let i = 0; i < 3; i++) {
+  hexSVG.getPointOnEdge(randomPointsOnLine, i);
+}
+const offsetHex = 10;
 let points = arrayToPoints(hexSVG.corners);
 let size = hexSVG.size;
 let coordX = hexSVG.center.x;
 let coordY = hexSVG.center.y;
 let width = size * 2;
-let height = (Math.sqrt(3) / 2) * width;
-let widthInc = 3 * (width / 4);
-let column = 0;
+let height = (Math.sqrt(3) / 2) * width + offsetHex;
+let widthInc = 3 * (width / 4) + offsetHex;
 
+// drawing
+
+let column = 0;
 for (let x = width / 2; x < 700; x += widthInc) {
   let startY = ((column % 2) == 0) ? height : height / 2;
   for (let y = startY; y < 340; y += height) {
-    if (hexSVG.edgePoints[0]) {
-      console.log('I have random points');
-    } else {
-
-    }
     const g = document.createElementNS(svgNS, 'g');
     g.setAttribute('class', 'tile');
     g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
@@ -163,9 +171,18 @@ for (let x = width / 2; x < 700; x += widthInc) {
     hex.setAttribute('points', points);
     svg.appendChild(g);
     g.appendChild(hex);
-    hex.addEventListener('click', function(event) {
-      console.log(event);
-    })
+    hexSVG.edgePoints.forEach((hex) => {
+      for (let i = 0; i <= 5; i++) {
+        let random = randomInteger(0,5);
+        const line = document.createElementNS(svgNS, 'line');
+        line.setAttribute('x1', hex[i].x);
+        line.setAttribute('y1', hex[i].y);
+        line.setAttribute('x2', hex[random].x);
+        line.setAttribute('y2', hex[random].y);
+        g.appendChild(line)
+      }
+    });
+
   }
   column++;
 }
