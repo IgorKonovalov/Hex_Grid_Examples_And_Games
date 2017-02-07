@@ -104,7 +104,9 @@ for (let i = 1; i <= 5; i++){
 cx.closePath();
 cx.stroke();
 
-// strokefun
+//strokefun
+
+
 //
 // let gradient=cx.createLinearGradient(0,0,170,0);
 // gradient.addColorStop("0","magenta");
@@ -115,7 +117,7 @@ cx.stroke();
 // cx.strokeStyle=gradient;
 // cx.lineWidth=5;
 
-// рисуем линии по сторонам шестиугольника
+// рисуем линии по сторонам шестиугольника random!
 cx.beginPath();
 cx.moveTo(hex.edgePoints[0][0].x, hex.edgePoints[0][0].y);
 hex.edgePoints.forEach(function(hex, i) {
@@ -125,3 +127,47 @@ hex.edgePoints.forEach(function(hex, i) {
   }
 })
 cx.stroke();
+
+// SVG - положить внутрь?
+
+const hexDiv = document.getElementById('hex');
+const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+const svgNS = svg.namespaceURI;
+svg.setAttributeNS(null, "width", "800px");
+svg.setAttributeNS(null, "height", "400px");
+
+let hexSVG = new HexObject({x: 20, y: 20}, 40);
+hexSVG.hexCornersFlat();
+console.log(hexSVG);
+let points = arrayToPoints(hexSVG.corners);
+let size = hexSVG.size;
+let coordX = hexSVG.center.x;
+let coordY = hexSVG.center.y;
+let width = size * 2;
+let height = (Math.sqrt(3) / 2) * width;
+let widthInc = 3 * (width / 4);
+let column = 0;
+
+for (let x = width / 2; x < 700; x += widthInc) {
+  let startY = ((column % 2) == 0) ? height : height / 2;
+  for (let y = startY; y < 340; y += height) {
+    if (hexSVG.edgePoints[0]) {
+      console.log('I have random points');
+    } else {
+
+    }
+    const g = document.createElementNS(svgNS, 'g');
+    g.setAttribute('class', 'tile');
+    g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
+    const hex = document.createElementNS(svgNS,'polygon')
+    hex.setAttribute('points', points);
+    svg.appendChild(g);
+    g.appendChild(hex);
+    hex.addEventListener('click', function(event) {
+      console.log(event);
+    })
+  }
+  column++;
+}
+
+hexDiv.appendChild(svg);
