@@ -35,7 +35,7 @@ HexObject.prototype.getPointOnEdge = function(method, i) {
 };
 
 
-let centerHex = {x: 100, y: 100};
+let centerHex = {x: 300, y: 100};
 const sizeHex = 80; // радиус от центра к углу
 let hex = new HexObject(centerHex, sizeHex);
 
@@ -50,28 +50,24 @@ const cx = canvas.getContext('2d');
 
 // рисуем шeстиугольник - canvas
 
-// cx.lineWidth = 1;
-// cx.beginPath();
-// cx.moveTo(hex.corners[0].x, hex.corners[0].y);
-// for (let i = 1; i <= 5; i++){
-//   cx.lineTo(hex.corners[i].x, hex.corners[i].y);
-// }
-// cx.closePath();
-// cx.stroke();
+cx.lineWidth = 1;
+cx.beginPath();
+cx.moveTo(hex.corners[0].x, hex.corners[0].y);
+for (let i = 1; i <= 5; i++){
+  cx.lineTo(hex.corners[i].x, hex.corners[i].y);
+}
+cx.closePath();
+cx.stroke();
 
-//strokefun
-
-
-// рисуем линии по сторонам шестиугольника random!
-// cx.beginPath();
-// cx.moveTo(hex.edgePoints[0][0].x, hex.edgePoints[0][0].y);
-// hex.edgePoints.forEach((hex) => {
-//   for (let i = 0; i <= 5; i++){
-//     let random = randomInteger(0,5);
-//     cx.lineTo(hex[random].x, hex[random].y);
-//   }
-// });
-// cx.stroke();
+cx.beginPath();
+cx.moveTo(hex.edgePoints[0][0].x, hex.edgePoints[0][0].y);
+hex.edgePoints.forEach((hex) => {
+  for (let i = 0; i <= 5; i++){
+    let random = randomInteger(0,5);
+    cx.lineTo(hex[random].x, hex[random].y);
+  }
+});
+cx.stroke();
 
 /*
 ███████ ██    ██  ██████

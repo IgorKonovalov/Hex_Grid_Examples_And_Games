@@ -5,7 +5,7 @@
     pointer-events: visiblePainted;
     fill: hsl(60, 10%, 95%);
     stroke: hsla(0, 0%, 0%, 0.62);
-    stroke-width: 0.5;
+    stroke-width: 1.5;
 }
 
 .tile line {

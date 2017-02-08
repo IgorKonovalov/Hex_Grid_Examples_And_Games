@@ -43,17 +43,12 @@ SquareObject.prototype.getPointOnEdge = function(method, i) {
 };
 
 
-let squareTest = new SquareObject({x: 100, y: 100}, 80);
+let squareTest = new SquareObject({x: 100, y: 100}, 100);
 // squareTest.squareCornersTop();
 squareTest.squareCornersFlat();
 for (var i = 0; i < 3; i++) {
   squareTest.getPointOnEdge(randomPointsOnLine, i);
 }
-
-
-
-
-console.log(squareTest);
 
 // canvas test
 
@@ -76,3 +71,11 @@ squareTest.edgePoints.forEach((square) => {
   }
 });
 cx.stroke();
+
+/*
+███████ ██    ██  ██████
+██      ██    ██ ██
+███████ ██    ██ ██   ███
+     ██  ██  ██  ██    ██
+███████   ████    ██████
+*/
