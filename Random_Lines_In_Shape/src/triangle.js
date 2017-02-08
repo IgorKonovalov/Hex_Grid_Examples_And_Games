@@ -67,17 +67,44 @@ const svgTr = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 svgTr.setAttributeNS(null, "width", "800px");
 svgTr.setAttributeNS(null, "height", "400px");
 
-let triangleSCG = new TriangleObject({x: 20, y: 20}, 80);
-triangleSCG.triangleCornersFlat();
+let triangleSVG = new TriangleObject({x: 20, y: 20}, 80);
+triangleSVG.triangleCornersFlat();
 
 for (let i = 0; i < 3; i++) {
-  triangleSCG.getPointOnEdge(randomPointsOnLine, i);
+  triangleSVG.getPointOnEdge(randomPointsOnLine, i);
 }
 
-const offsetTr = 10;
-let pointsTr = arrayToPoints(triangleSCG.corners);
-let sizeTr = triangleSCG.size;
-let coordXTr = triangleSCG.center.x;
-let coordYTr = triangleSCG.center.y;
-let widthTr = Math.cos(Math.PI / 60) * sizeTr * 2;
-let heightTr = Math.sin(Math.PI / 60) * sizeTr + sizeTr;
+const offsetTr = 0;
+let pointsTr = arrayToPoints(triangleSVG.corners);
+let sizeTr = triangleSVG.size;
+let coordXTr = triangleSVG.center.x;
+let coordYTr = triangleSVG.center.y;
+let widthTr = Math.cos(Math.PI / 6) * sizeTr * 2;
+let heightTr = Math.sin(Math.PI / 6) * sizeTr + sizeTr;
+
+// drawing flat
+
+for (let x = widthTr / 2; x < 700; x += (widthTr + offsetTr)) {
+  for (let y = heightTr / 2; y < 340; y += (heightTr + offsetTr)) {
+    const g = document.createElementNS(svgNS, 'g');
+    g.setAttribute('class', 'tile');
+    g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
+    const triangle = document.createElementNS(svgNS,'polygon')
+    triangle.setAttribute('points', pointsTr);
+    svgTr.appendChild(g);
+    g.appendChild(triangle);
+    triangleSVG.edgePoints.forEach((triangle) => {
+      for (let i = 0; i <= 1; i++) {
+        let random = randomInteger(0,2);
+        const line = document.createElementNS(svgNS, 'line');
+        line.setAttribute('x1', triangle[i].x);
+        line.setAttribute('y1', triangle[i].y);
+        line.setAttribute('x2', triangle[random].x);
+        line.setAttribute('y2', triangle[random].y);
+        g.appendChild(line)
+      }
+    });
+  }
+}
+
+triangleDiv.appendChild(svgTr);
