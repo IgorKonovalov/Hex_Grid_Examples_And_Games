@@ -29,7 +29,7 @@ TriangleObject.prototype.getPointOnEdge = function(method, i) {
 
 let triangleTest = new TriangleObject({x: 490, y: 125}, 90);
 triangleTest.triangleCornersFlat();
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 2; i++) {
   triangleTest.getPointOnEdge(randomPointsOnLine, i);
 }
 
@@ -53,3 +53,31 @@ triangleTest.edgePoints.forEach((triangle) => {
   }
 });
 cx.stroke();
+
+/*
+███████ ██    ██  ██████
+██      ██    ██ ██
+███████ ██    ██ ██   ███
+     ██  ██  ██  ██    ██
+███████   ████    ██████
+*/
+
+const triangleDiv = document.getElementById('triangle');
+const svgTr = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+svgTr.setAttributeNS(null, "width", "800px");
+svgTr.setAttributeNS(null, "height", "400px");
+
+let triangleSCG = new TriangleObject({x: 20, y: 20}, 80);
+triangleSCG.triangleCornersFlat();
+
+for (let i = 0; i < 3; i++) {
+  triangleSCG.getPointOnEdge(randomPointsOnLine, i);
+}
+
+const offsetTr = 10;
+let pointsTr = arrayToPoints(triangleSCG.corners);
+let sizeTr = triangleSCG.size;
+let coordXTr = triangleSCG.center.x;
+let coordYTr = triangleSCG.center.y;
+let widthTr = Math.cos(Math.PI / 60) * sizeTr * 2;
+let heightTr = Math.sin(Math.PI / 60) * sizeTr + sizeTr;

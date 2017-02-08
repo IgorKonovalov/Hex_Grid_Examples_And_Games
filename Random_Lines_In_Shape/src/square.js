@@ -86,8 +86,6 @@ svgSq.setAttributeNS(null, "height", "400px");
 
 // preparations
 
-// preparations
-
 let squareSVG = new SquareObject({x: 20, y: 20}, 80);
 squareSVG.squareCornersFlat();
 
