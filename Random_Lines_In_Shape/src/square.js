@@ -14,7 +14,7 @@ SquareObject.prototype.squareCornersTop = function() {
     point.y = this.center.y + this.size * Math.sin(angle_rad);
     corners.push(point);
   }
-  this.corners = corners; // записываем в свойство
+  this.corners = corners;
 };
 
 SquareObject.prototype.squareCornersFlat = function() {
@@ -46,7 +46,7 @@ SquareObject.prototype.getPointOnEdge = function(method, i) {
 let squareTest = new SquareObject({x: 100, y: 100}, 100);
 // squareTest.squareCornersTop();
 squareTest.squareCornersFlat();
-for (var i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++) {
   squareTest.getPointOnEdge(randomPointsOnLine, i);
 }
 
@@ -114,7 +114,7 @@ for (let x = widthSq / 2; x < 700; x += (widthSq + offsetSq)) {
     svgSq.appendChild(g);
     g.appendChild(square);
     squareSVG.edgePoints.forEach((square) => {
-      for (let i = 0; i <= 3; i++) {
+      for (let i = 0; i <= 1; i++) {
         let random = randomInteger(0,3);
         const line = document.createElementNS(svgNS, 'line');
         line.setAttribute('x1', square[i].x);
