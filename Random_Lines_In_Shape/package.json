@@ -1,0 +1,30 @@
+{
+  "name": "randomlines",
+  "version": "1.0.0",
+  "description": "Random lines in different shapes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IgorKonovalov/Shapes_Testing_Chamber/tree/master/Random_Lines_In_Shape"
+  },
+  "keywords": [
+    "random",
+    "svg",
+    "line",
+    "shape",
+    "javascript"
+  ],
+  "author": "Igor Konovalov",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.1"
+  }
+}
