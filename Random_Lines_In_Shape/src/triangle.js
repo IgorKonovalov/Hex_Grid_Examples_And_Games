@@ -67,41 +67,40 @@ const svgTr = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 svgTr.setAttributeNS(null, "width", "800px");
 svgTr.setAttributeNS(null, "height", "400px");
 
-let triangleSVG = new TriangleObject({x: 20, y: 20}, 80);
+let triangleSVG = new TriangleObject({x: 20, y: 20}, 130);
 triangleSVG.triangleCornersFlat();
-console.log(triangleSVG.center.x);
 
 for (let i = 0; i < 3; i++) {
   triangleSVG.getPointOnEdge(randomPointsOnLine, i);
 }
 
-const offsetTr = 0;
+const offsetTr = 5;
 let pointsTr = arrayToPoints(triangleSVG.corners);
 let sizeTr = triangleSVG.size;
 let coordXTr = triangleSVG.center.x;
 let coordYTr = triangleSVG.center.y;
 let widthTr = Math.cos(Math.PI / 6) * sizeTr * 2;
 let heightTr = Math.sin(Math.PI / 6) * sizeTr + sizeTr;
-let widthIncTr = widthTr / 2;
+let widthIncTr = widthTr;
 
 // drawing flat
 let columnTr = 0;
 let startY = heightTr;
 
 for (let x = widthTr / 2; x < 700; x += (widthIncTr + offsetTr)) {
-  if ((columnTr % 2) == 0) {
-    startY = heightTr / 2;
-  } else {
-    startY = heightTr;
-  }
+  // if ((columnTr % 2) == 0) {
+  //   startY = heightTr / 2;
+  // } else {
+  //   startY = heightTr;
+  // }
   for (let y = startY; y < 340; y += (heightTr + 2 * offsetTr)) {
     const g = document.createElementNS(svgNS, 'g');
     g.setAttribute('class', 'tile');
-    if ((columnTr % 2) == 0) {
+    // if ((columnTr % 2) == 0) {
       g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
-    } else {
-      g.setAttribute('transform', 'translate('+ x + ',' + (y + sizeTr / 4 + offsetTr) + ') rotate(60 ' + triangleSVG.center.x + ' ' + triangleSVG.center.y + ')');
-    }
+    // } else {
+    //   g.setAttribute('transform', 'translate('+ x + ',' + (y + sizeTr / 4 + offsetTr) + ') rotate(60 ' + triangleSVG.center.x + ' ' + triangleSVG.center.y + ')');
+    // }
     const triangle = document.createElementNS(svgNS,'polygon')
     triangle.setAttribute('points', pointsTr);
     svgTr.appendChild(g);
