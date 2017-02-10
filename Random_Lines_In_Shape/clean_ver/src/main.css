@@ -3,13 +3,13 @@
 }
 .tile polygon {
     pointer-events: visiblePainted;
-    fill: #EDEDED;
-    stroke: #101010;
+    /*fill: #EDEDED;*/
+    /*stroke: #101010;*/
     stroke-width: 1.5;
 }
 
 .tile line {
-  stroke: #101010;
+  /*stroke: #101010;*/
   stroke-width: 1.5;
 }
 

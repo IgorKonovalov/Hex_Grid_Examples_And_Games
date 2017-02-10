@@ -40,7 +40,10 @@ const select_figure = document.getElementById('figure_select'),
       offsetValue = document.getElementById('offsetValue'),
       svgWidth = document.getElementById('svgWidth'),
       svgHeight = document.getElementById('svgHeight'),
-      svgLines = document.getElementById('lines');
+      svgLines = document.getElementById('lines'),
+      bgColor = document.getElementById('bgColor'),
+      lineColor = document.getElementById('lineColor');
+
 
 
 // draw
@@ -52,13 +55,13 @@ buttonDraw.addEventListener('click', () => {
   }
   switch (select_figure.value) {
     case 'HEX':
-      drawHexSVG(sizeValue.value, offsetValue.value, svgWidth.value, svgHeight.value, svgLines.value);
+      drawHexSVG(sizeValue.value, offsetValue.value, svgWidth.value, svgHeight.value, svgLines.value, bgColor.value, lineColor.value);
       break;
     case 'Triangle':
-      drawTriangleSVG(sizeValue.value, offsetValue.value, svgWidth.value, svgHeight.value, svgLines.value);
+      drawTriangleSVG(sizeValue.value, offsetValue.value, svgWidth.value, svgHeight.value, svgLines.value, bgColor.value, lineColor.value);
       break;
     case 'Square':
-      drawSquareSVG(sizeValue.value, offsetValue.value, svgWidth.value, svgHeight.value, svgLines.value);
+      drawSquareSVG(sizeValue.value, offsetValue.value, svgWidth.value, svgHeight.value, svgLines.value, bgColor.value, lineColor.value);
       break;
   }
 })
@@ -71,3 +74,4 @@ buttonDownload.addEventListener('click', () => {
 })
 
 // colors
+// get polygons color

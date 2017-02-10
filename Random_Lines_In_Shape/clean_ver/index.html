@@ -17,6 +17,11 @@
   Set number of lines (multiply by number of edges):
   <input type="text" id="lines" value="1">
   <br>
+  Set figure background color:
+  <input type="color" id="bgColor" name="background" value=#EDEDED>
+  Set line color:
+  <input type="color" id="lineColor" value=#101010>
+  <br>
   <select id="figure_select">
     <option value="HEX">Hex</option>
     <option value="Triangle">Triangle</option>
@@ -28,11 +33,6 @@
   <input type="text" id="offsetValue" name="" value="5">
   <button type="button" name="generate" id="generate">Generate Sprite</button>
   <div id="Figure"></div>
-  Set figure background color:
-  <input type="color" id="bgColor" name="background" value=#EDEDED>
-  Set line color:
-  <input type="color" id="lineColor" value=#101010>
-  <br>
   <button id="download">Download SVG</button>
 
   <script src="src/functions.js"></script>

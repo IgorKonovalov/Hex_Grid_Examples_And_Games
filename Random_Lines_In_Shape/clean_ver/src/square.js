@@ -57,7 +57,7 @@ for (let i = 0; i < 3; i++) {
      ██  ██  ██  ██    ██
 ███████   ████    ██████
 */
-function drawSquareSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines) {
+function drawSquareSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines, bg, color) {
   const sqDiv = document.getElementById('Figure');
   const svgSq = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svgSq.setAttributeNS(null, "width", svgWidth + "px");
@@ -89,6 +89,9 @@ function drawSquareSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines) {
       g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
       const square = document.createElementNS(svgNS,'polygon')
       square.setAttribute('points', pointsSq);
+      square.setAttribute('fill', bg);
+      square.setAttribute('stroke', color);
+
       svgSq.appendChild(g);
       g.appendChild(square);
       squareSVG.edgePoints.forEach((square) => {
@@ -99,6 +102,7 @@ function drawSquareSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines) {
           line.setAttribute('y1', square[i].y);
           line.setAttribute('x2', square[random].x);
           line.setAttribute('y2', square[random].y);
+          line.setAttribute('stroke', color);
           g.appendChild(line)
         }
       });

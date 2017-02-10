@@ -40,7 +40,7 @@ for (let i = 0; i < 2; i++) {
      ██  ██  ██  ██    ██
 ███████   ████    ██████
 */
-function drawTriangleSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines) {
+function drawTriangleSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines, bg, color) {
   const triangleDiv = document.getElementById('Figure');
   const svgTr = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svgTr.setAttributeNS(null, "width", svgWidth + "px");
@@ -69,6 +69,9 @@ function drawTriangleSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines) {
       g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
       const triangle = document.createElementNS(svgNS,'polygon')
       triangle.setAttribute('points', pointsTr);
+      triangle.setAttribute('fill', bg);
+      triangle.setAttribute('stroke', color);
+
       svgTr.appendChild(g);
       g.appendChild(triangle);
       triangleSVG.edgePoints.forEach((triangle) => {
@@ -79,6 +82,8 @@ function drawTriangleSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines) {
           line.setAttribute('y1', triangle[i].y);
           line.setAttribute('x2', triangle[random].x);
           line.setAttribute('y2', triangle[random].y);
+          line.setAttribute('stroke', color);
+
           g.appendChild(line)
         }
       });

@@ -41,7 +41,7 @@ for (let i = 0; i < 3; i++) { // рассчитываем случайную т�
   hex.getPointOnEdge(randomPointsOnLine, i);
 }
 
-function drawHexSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines) {
+function drawHexSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines, bg, color) {
   const hexDiv = document.getElementById('Figure');
   const svgHex = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svgHex.setAttributeNS(null, "width", svgWidth + "px");
@@ -75,6 +75,8 @@ function drawHexSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines) {
       g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
       const hex = document.createElementNS(svgNS,'polygon')
       hex.setAttribute('points', points);
+      hex.setAttribute('fill', bg);
+      hex.setAttribute('stroke', color);
       svgHex.appendChild(g);
       g.appendChild(hex);
       hexSVG.edgePoints.forEach((hex) => {
@@ -85,6 +87,7 @@ function drawHexSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines) {
           line.setAttribute('y1', hex[i].y);
           line.setAttribute('x2', hex[random].x);
           line.setAttribute('y2', hex[random].y);
+          line.setAttribute('stroke', color);
           g.appendChild(line)
         }
       });
