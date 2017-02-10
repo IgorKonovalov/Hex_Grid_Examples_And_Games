@@ -1,8 +1,4 @@
 
-// вспомогательные функции
-
-// обьекты
-
 // шестиугольник
 
 function HexObject(center, size) {
@@ -21,7 +17,7 @@ HexObject.prototype.hexCornersFlat = function() {
     point.y = this.center.y + this.size * Math.sin(angle_rad);
     corners.push(point);
   }
-  this.corners = corners; // записываем в свойство
+  this.corners = corners;
 };
 
 HexObject.prototype.getPointOnEdge = function(method, i) {
@@ -45,44 +41,14 @@ for (let i = 0; i < 3; i++) { // рассчитываем случайную т�
   hex.getPointOnEdge(randomPointsOnLine, i);
 }
 
-const canvas = document.getElementById('test')
-const cx = canvas.getContext('2d');
+function drawHex() {
 
-// рисуем шeстиугольник - canvas
-
-cx.lineWidth = 1;
-cx.beginPath();
-cx.moveTo(hex.corners[0].x, hex.corners[0].y);
-for (let i = 1; i <= 5; i++){
-  cx.lineTo(hex.corners[i].x, hex.corners[i].y);
 }
-cx.closePath();
-cx.stroke();
-
-cx.beginPath();
-cx.moveTo(hex.edgePoints[0][0].x, hex.edgePoints[0][0].y);
-hex.edgePoints.forEach((hex) => {
-  for (let i = 0; i <= 5; i++){
-    let random = randomInteger(0,5);
-    cx.lineTo(hex[random].x, hex[random].y);
-  }
-});
-cx.stroke();
-
-/*
-███████ ██    ██  ██████
-██      ██    ██ ██
-███████ ██    ██ ██   ███
-     ██  ██  ██  ██    ██
-███████   ████    ██████
-*/
-
 const hexDiv = document.getElementById('hex');
 const svgHex = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 const svgNS = svgHex.namespaceURI;
 svgHex.setAttributeNS(null, "width", "800px");
 svgHex.setAttributeNS(null, "height", "400px");
-svgHex.setAttributeNS(null, "class", "Hex SVG");
 
 // preparations
 

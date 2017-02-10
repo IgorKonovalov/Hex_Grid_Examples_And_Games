@@ -134,14 +134,7 @@ function download(source) {
 }
 
 // button
-
-
-
-
-const buttons = document.getElementsByClassName('download')
-buttonsArray = Array.from(buttons);
-buttonsArray.forEach((button, i) => {
-  button.addEventListener('click', () => {
-    download(SVGSources[i]);
-  })
+let buttonDownload = document.getElementById('download');
+buttonDownload.addEventListener('click', function() {
+  download(SVGSources[0]);
 })

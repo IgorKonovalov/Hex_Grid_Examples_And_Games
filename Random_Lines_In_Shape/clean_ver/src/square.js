@@ -83,8 +83,6 @@ const sqDiv = document.getElementById('square');
 const svgSq = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 svgSq.setAttributeNS(null, "width", "800px");
 svgSq.setAttributeNS(null, "height", "400px");
-svgSq.setAttributeNS(null, "class", "Square SVG");
-
 
 // preparations
 

@@ -65,9 +65,7 @@ cx.stroke();
 const triangleDiv = document.getElementById('triangle');
 const svgTr = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 svgTr.setAttributeNS(null, "width", "800px");
-svgTr.setAttributeNS(null, "height", "450px");
-svgTr.setAttributeNS(null, "class", "Triangle SVG");
-
+svgTr.setAttributeNS(null, "height", "400px");
 
 let triangleSVG = new TriangleObject({x: 20, y: 20}, 130);
 triangleSVG.triangleCornersFlat();
@@ -87,7 +85,7 @@ let widthIncTr = widthTr;
 
 // drawing flat
 let columnTr = 0;
-let startY = heightTr * 0.6;
+let startY = heightTr;
 
 for (let x = widthTr / 2; x < 700; x += (widthIncTr + offsetTr)) {
   // if ((columnTr % 2) == 0) {
@@ -95,7 +93,7 @@ for (let x = widthTr / 2; x < 700; x += (widthIncTr + offsetTr)) {
   // } else {
   //   startY = heightTr;
   // }
-  for (let y = startY; y < 450; y += (heightTr + 2 * offsetTr)) {
+  for (let y = startY; y < 340; y += (heightTr + 2 * offsetTr)) {
     const g = document.createElementNS(svgNS, 'g');
     g.setAttribute('class', 'tile');
     // if ((columnTr % 2) == 0) {
