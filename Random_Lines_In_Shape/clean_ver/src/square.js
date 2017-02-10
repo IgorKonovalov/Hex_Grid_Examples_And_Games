@@ -57,21 +57,22 @@ for (let i = 0; i < 3; i++) {
      ██  ██  ██  ██    ██
 ███████   ████    ██████
 */
-function drawSquareSVG() {
+function drawSquareSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines) {
   const sqDiv = document.getElementById('Figure');
   const svgSq = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svgSq.setAttributeNS(null, "width", "800px");
-  svgSq.setAttributeNS(null, "height", "400px");
+  svgSq.setAttributeNS(null, "width", svgWidth + "px");
+  svgSq.setAttributeNS(null, "height", svgHeight + "px");
+  svgSq.setAttributeNS(null, "id", "svg_figure");
 
   // preparations
 
-  let squareSVG = new SquareObject({x: 20, y: 20}, 80);
+  let squareSVG = new SquareObject({x: 20, y: 20}, sizeValue);
   squareSVG.squareCornersFlat();
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < lines; i++) {
     squareSVG.getPointOnEdge(randomPointsOnLine, i);
   }
-  const offsetSq = 10;
+  let offsetSq = Number(offsetValue);
   let pointsSq = arrayToPoints(squareSVG.corners);
   let sizeSq = squareSVG.size;
   let coordXSq = squareSVG.center.x;
@@ -81,8 +82,8 @@ function drawSquareSVG() {
 
   // drawing flat
 
-  for (let x = widthSq / 2; x < 700; x += (widthSq + offsetSq)) {
-    for (let y = heightSq / 2; y < 340; y += (heightSq + offsetSq)) {
+  for (let x = widthSq / 2; x < (svgWidth - widthSq/2); x += (widthSq + offsetSq)) {
+    for (let y = heightSq / 2; y < (svgHeight -widthSq/2 ); y += (heightSq + offsetSq)) {
       const g = document.createElementNS(svgNS, 'g');
       g.setAttribute('class', 'tile');
       g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
@@ -91,7 +92,7 @@ function drawSquareSVG() {
       svgSq.appendChild(g);
       g.appendChild(square);
       squareSVG.edgePoints.forEach((square) => {
-        for (let i = 0; i <= 1; i++) {
+        for (let i = 0; i <= 3; i++) {
           let random = randomInteger(0,3);
           const line = document.createElementNS(svgNS, 'line');
           line.setAttribute('x1', square[i].x);
@@ -103,6 +104,5 @@ function drawSquareSVG() {
       });
     }
   }
-
   sqDiv.appendChild(svgSq);
 }

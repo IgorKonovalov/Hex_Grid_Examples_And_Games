@@ -33,15 +33,34 @@ function middlePointOnLine(start, end) {
 
 // BUTTONS
 
-// draw
+// options
+const select_figure = document.getElementById('figure_select'),
+      svgNS = "http://www.w3.org/2000/svg",
+      sizeValue = document.getElementById('sizeValue'),
+      offsetValue = document.getElementById('offsetValue'),
+      svgWidth = document.getElementById('svgWidth'),
+      svgHeight = document.getElementById('svgHeight'),
+      svgLines = document.getElementById('lines');
 
+
+// draw
 const buttonDraw = document.getElementById('generate');
 buttonDraw.addEventListener('click', () => {
   let svg = document.getElementById('svg_figure');
   if (svg) {
     svg.remove();
   }
-  drawHexSVG();
+  switch (select_figure.value) {
+    case 'HEX':
+      drawHexSVG(sizeValue.value, offsetValue.value, svgWidth.value, svgHeight.value, svgLines.value);
+      break;
+    case 'Triangle':
+      drawTriangleSVG(sizeValue.value, offsetValue.value, svgWidth.value, svgHeight.value, svgLines.value);
+      break;
+    case 'Square':
+      drawSquareSVG(sizeValue.value, offsetValue.value, svgWidth.value, svgHeight.value, svgLines.value);
+      break;
+  }
 })
 
 // Download
@@ -50,3 +69,5 @@ buttonDownload.addEventListener('click', () => {
   initiateDownload();
   download(SVGSources[0]);
 })
+
+// colors

@@ -40,33 +40,30 @@ for (let i = 0; i < 2; i++) {
      ██  ██  ██  ██    ██
 ███████   ████    ██████
 */
-function drawTriangleSVG() {
-  const triangleDiv = document.getElementById('triangle');
+function drawTriangleSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines) {
+  const triangleDiv = document.getElementById('Figure');
   const svgTr = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svgTr.setAttributeNS(null, "width", "800px");
-  svgTr.setAttributeNS(null, "height", "400px");
+  svgTr.setAttributeNS(null, "width", svgWidth + "px");
+  svgTr.setAttributeNS(null, "height", svgHeight + "px");
+  svgTr.setAttributeNS(null, "id", "svg_figure");
 
-  let triangleSVG = new TriangleObject({x: 20, y: 20}, 130);
+
+  let triangleSVG = new TriangleObject({x: 20, y: 20}, sizeValue);
   triangleSVG.triangleCornersFlat();
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < lines; i++) {
     triangleSVG.getPointOnEdge(randomPointsOnLine, i);
   }
-
-  const offsetTr = 5;
+  let offsetTr = Number(offsetValue);
   let pointsTr = arrayToPoints(triangleSVG.corners);
   let sizeTr = triangleSVG.size;
   let coordXTr = triangleSVG.center.x;
   let coordYTr = triangleSVG.center.y;
   let widthTr = Math.cos(Math.PI / 6) * sizeTr * 2;
   let heightTr = Math.sin(Math.PI / 6) * sizeTr + sizeTr;
-  let widthIncTr = widthTr;
 
-  let columnTr = 0;
-  let startY = heightTr;
-
-  for (let x = widthTr / 2; x < 700; x += (widthIncTr + offsetTr)) {
-    for (let y = startY; y < 340; y += (heightTr + 2 * offsetTr)) {
+  for (let x = widthTr / 2; x < (svgWidth - widthTr); x += (widthTr + offsetTr)) {
+    for (let y = heightTr * 2; y < (svgHeight - heightTr / 2); y += (widthTr + offsetTr)) {
       const g = document.createElementNS(svgNS, 'g');
       g.setAttribute('class', 'tile');
       g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
@@ -75,7 +72,7 @@ function drawTriangleSVG() {
       svgTr.appendChild(g);
       g.appendChild(triangle);
       triangleSVG.edgePoints.forEach((triangle) => {
-        for (let i = 0; i <= 1; i++) {
+        for (let i = 0; i <= 2; i++) {
           let random = randomInteger(0,2);
           const line = document.createElementNS(svgNS, 'line');
           line.setAttribute('x1', triangle[i].x);
@@ -86,7 +83,6 @@ function drawTriangleSVG() {
         }
       });
     }
-    columnTr++;
   }
 
   triangleDiv.appendChild(svgTr);

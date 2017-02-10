@@ -30,7 +30,6 @@ function initiateDownload() {
       SVGSources.push(newSources[i]);
     }
   });
-  console.log(SVGSources);
 }
 
 
