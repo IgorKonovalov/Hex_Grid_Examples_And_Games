@@ -41,57 +41,58 @@ for (let i = 0; i < 3; i++) { // рассчитываем случайную т�
   hex.getPointOnEdge(randomPointsOnLine, i);
 }
 
-function drawHex() {
+function drawHexSVG() {
+  const hexDiv = document.getElementById('Figure');
+  const svgHex = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  const svgNS = svgHex.namespaceURI;
+  svgHex.setAttributeNS(null, "width", "800px");
+  svgHex.setAttributeNS(null, "height", "400px");
+  svgHex.setAttributeNS(null, "id", "svg_figure");
+  svgHex.setAttributeNS(null, "class", "svg_hex");
 
-}
-const hexDiv = document.getElementById('hex');
-const svgHex = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-const svgNS = svgHex.namespaceURI;
-svgHex.setAttributeNS(null, "width", "800px");
-svgHex.setAttributeNS(null, "height", "400px");
+  // preparations
 
-// preparations
-
-let hexSVG = new HexObject({x: 20, y: 20}, 40);
-hexSVG.hexCornersFlat();
-for (let i = 0; i < 1; i++) {
-  hexSVG.getPointOnEdge(randomPointsOnLine, i);
-}
-const offsetHex = 5;
-let points = arrayToPoints(hexSVG.corners);
-let size = hexSVG.size;
-let coordX = hexSVG.center.x;
-let coordY = hexSVG.center.y;
-let width = size * 2;
-let height = (Math.sqrt(3) / 2) * width + offsetHex;
-let widthInc = 3 * (width / 4) + offsetHex;
-
-// drawing
-
-let columnHex = 0;
-for (let x = width / 2; x < 700; x += widthInc) {
-  let startY = ((columnHex % 2) == 0) ? height : height / 2;
-  for (let y = startY; y < 340; y += height) {
-    const g = document.createElementNS(svgNS, 'g');
-    g.setAttribute('class', 'tile');
-    g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
-    const hex = document.createElementNS(svgNS,'polygon')
-    hex.setAttribute('points', points);
-    svgHex.appendChild(g);
-    g.appendChild(hex);
-    hexSVG.edgePoints.forEach((hex) => {
-      for (let i = 0; i <= 5; i++) {
-        let random = randomInteger(0,5);
-        const line = document.createElementNS(svgNS, 'line');
-        line.setAttribute('x1', hex[i].x);
-        line.setAttribute('y1', hex[i].y);
-        line.setAttribute('x2', hex[random].x);
-        line.setAttribute('y2', hex[random].y);
-        g.appendChild(line)
-      }
-    });
+  let hexSVG = new HexObject({x: 20, y: 20}, 40);
+  hexSVG.hexCornersFlat();
+  for (let i = 0; i < 1; i++) {
+    hexSVG.getPointOnEdge(randomPointsOnLine, i);
   }
-  columnHex++;
-}
+  const offsetHex = 5;
+  let points = arrayToPoints(hexSVG.corners);
+  let size = hexSVG.size;
+  let coordX = hexSVG.center.x;
+  let coordY = hexSVG.center.y;
+  let width = size * 2;
+  let height = (Math.sqrt(3) / 2) * width + offsetHex;
+  let widthInc = 3 * (width / 4) + offsetHex;
 
-hexDiv.appendChild(svgHex);
+  // drawing
+
+  let columnHex = 0;
+  for (let x = width / 2; x < 700; x += widthInc) {
+    let startY = ((columnHex % 2) == 0) ? height : height / 2;
+    for (let y = startY; y < 340; y += height) {
+      const g = document.createElementNS(svgNS, 'g');
+      g.setAttribute('class', 'tile');
+      g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
+      const hex = document.createElementNS(svgNS,'polygon')
+      hex.setAttribute('points', points);
+      svgHex.appendChild(g);
+      g.appendChild(hex);
+      hexSVG.edgePoints.forEach((hex) => {
+        for (let i = 0; i <= 5; i++) {
+          let random = randomInteger(0,5);
+          const line = document.createElementNS(svgNS, 'line');
+          line.setAttribute('x1', hex[i].x);
+          line.setAttribute('y1', hex[i].y);
+          line.setAttribute('x2', hex[random].x);
+          line.setAttribute('y2', hex[random].y);
+          g.appendChild(line)
+        }
+      });
+    }
+    columnHex++;
+  }
+
+  hexDiv.appendChild(svgHex);
+}

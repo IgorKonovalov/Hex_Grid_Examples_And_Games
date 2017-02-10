@@ -30,3 +30,23 @@ function middlePointOnLine(start, end) {
   point.y = start.y - (middleLength * (start.y - end.y)) / line;
   return point;
 }
+
+// BUTTONS
+
+// draw
+
+const buttonDraw = document.getElementById('generate');
+buttonDraw.addEventListener('click', () => {
+  let svg = document.getElementById('svg_figure');
+  if (svg) {
+    svg.remove();
+  }
+  drawHexSVG();
+})
+
+// Download
+const buttonDownload = document.getElementById('download')
+buttonDownload.addEventListener('click', () => {
+  initiateDownload();
+  download(SVGSources[0]);
+})

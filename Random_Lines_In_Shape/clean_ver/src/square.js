@@ -50,27 +50,6 @@ for (let i = 0; i < 3; i++) {
   squareTest.getPointOnEdge(randomPointsOnLine, i);
 }
 
-// canvas test
-
-cx.lineWidth = 1;
-cx.beginPath();
-cx.moveTo(squareTest.corners[0].x, squareTest.corners[0].y);
-for (let i = 1; i <= 3; i++){
-  cx.lineTo(squareTest.corners[i].x, squareTest.corners[i].y);
-}
-cx.closePath();
-cx.stroke();
-
-cx.beginPath();
-cx.moveTo(squareTest.edgePoints[0][0].x, squareTest.edgePoints[0][0].y);
-squareTest.edgePoints.forEach((square) => {
-  for (let i = 0; i <= 3; i++) {
-    let random = randomInteger(0,3);
-    cx.lineTo(square[random].x, square[random].y);
-  }
-});
-cx.stroke();
-
 /*
 ███████ ██    ██  ██████
 ██      ██    ██ ██
@@ -78,51 +57,52 @@ cx.stroke();
      ██  ██  ██  ██    ██
 ███████   ████    ██████
 */
+function drawSquareSVG() {
+  const sqDiv = document.getElementById('Figure');
+  const svgSq = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svgSq.setAttributeNS(null, "width", "800px");
+  svgSq.setAttributeNS(null, "height", "400px");
 
-const sqDiv = document.getElementById('square');
-const svgSq = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-svgSq.setAttributeNS(null, "width", "800px");
-svgSq.setAttributeNS(null, "height", "400px");
+  // preparations
 
-// preparations
+  let squareSVG = new SquareObject({x: 20, y: 20}, 80);
+  squareSVG.squareCornersFlat();
 
-let squareSVG = new SquareObject({x: 20, y: 20}, 80);
-squareSVG.squareCornersFlat();
-
-for (let i = 0; i < 3; i++) {
-  squareSVG.getPointOnEdge(randomPointsOnLine, i);
-}
-const offsetSq = 10;
-let pointsSq = arrayToPoints(squareSVG.corners);
-let sizeSq = squareSVG.size;
-let coordXSq = squareSVG.center.x;
-let coordYSq = squareSVG.center.y;
-let widthSq = (sizeSq / Math.sqrt(2)) * 2;
-let heightSq = widthSq;
-
-// drawing flat
-
-for (let x = widthSq / 2; x < 700; x += (widthSq + offsetSq)) {
-  for (let y = heightSq / 2; y < 340; y += (heightSq + offsetSq)) {
-    const g = document.createElementNS(svgNS, 'g');
-    g.setAttribute('class', 'tile');
-    g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
-    const square = document.createElementNS(svgNS,'polygon')
-    square.setAttribute('points', pointsSq);
-    svgSq.appendChild(g);
-    g.appendChild(square);
-    squareSVG.edgePoints.forEach((square) => {
-      for (let i = 0; i <= 1; i++) {
-        let random = randomInteger(0,3);
-        const line = document.createElementNS(svgNS, 'line');
-        line.setAttribute('x1', square[i].x);
-        line.setAttribute('y1', square[i].y);
-        line.setAttribute('x2', square[random].x);
-        line.setAttribute('y2', square[random].y);
-        g.appendChild(line)
-      }
-    });
+  for (let i = 0; i < 3; i++) {
+    squareSVG.getPointOnEdge(randomPointsOnLine, i);
   }
-}
+  const offsetSq = 10;
+  let pointsSq = arrayToPoints(squareSVG.corners);
+  let sizeSq = squareSVG.size;
+  let coordXSq = squareSVG.center.x;
+  let coordYSq = squareSVG.center.y;
+  let widthSq = (sizeSq / Math.sqrt(2)) * 2;
+  let heightSq = widthSq;
 
-sqDiv.appendChild(svgSq);
+  // drawing flat
+
+  for (let x = widthSq / 2; x < 700; x += (widthSq + offsetSq)) {
+    for (let y = heightSq / 2; y < 340; y += (heightSq + offsetSq)) {
+      const g = document.createElementNS(svgNS, 'g');
+      g.setAttribute('class', 'tile');
+      g.setAttribute('transform', 'translate('+ x + ',' + y + ')');
+      const square = document.createElementNS(svgNS,'polygon')
+      square.setAttribute('points', pointsSq);
+      svgSq.appendChild(g);
+      g.appendChild(square);
+      squareSVG.edgePoints.forEach((square) => {
+        for (let i = 0; i <= 1; i++) {
+          let random = randomInteger(0,3);
+          const line = document.createElementNS(svgNS, 'line');
+          line.setAttribute('x1', square[i].x);
+          line.setAttribute('y1', square[i].y);
+          line.setAttribute('x2', square[random].x);
+          line.setAttribute('y2', square[random].y);
+          g.appendChild(line)
+        }
+      });
+    }
+  }
+
+  sqDiv.appendChild(svgSq);
+}

@@ -1,10 +1,7 @@
+
 var doctype = '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
 
 window.URL = (window.URL || window.webkitURL);
-
-var body = document.body,
-    SVGSources = [];
-    emptySvg;
 
 var prefix = {
   xmlns: "http://www.w3.org/2000/xmlns/",
@@ -12,19 +9,29 @@ var prefix = {
   svg: "http://www.w3.org/2000/svg"
 };
 
-var emptySvg = window.document.createElementNS(prefix.svg, 'svg');
+let SVGSources = [],
+    body = document.body;
+
+
+
+let emptySvg = window.document.createElementNS(prefix.svg, 'svg');
+emptySvg.setAttribute('class', 'displaynone');
 window.document.body.appendChild(emptySvg);
 var emptySvgDeclarationComputed = getComputedStyle(emptySvg);
 
-let documents = [window.document];
+function initiateDownload() {
 
-documents.forEach(function(doc) {
-  var newSources = getSources(doc, emptySvgDeclarationComputed);
-  // because of prototype on NYT pages
-  for (var i = 0; i < newSources.length; i++) {
-    SVGSources.push(newSources[i]);
-  }
-});
+  let documents = [window.document];
+
+  documents.forEach(function(doc) {
+    var newSources = getSources(doc, emptySvgDeclarationComputed);
+    SVGSources = [];
+    for (var i = 0; i < newSources.length; i++) {
+      SVGSources.push(newSources[i]);
+    }
+  });
+  console.log(SVGSources);
+}
 
 
 function getSources(doc, emptySvgDeclarationComputed) {
@@ -119,6 +126,10 @@ function download(source) {
   }
 
   var url = window.URL.createObjectURL(new Blob(source.source, { "type" : "text\/xml" }));
+  let prev = document.getElementsByClassName('svg-crowbar')[0];
+  if (prev) {
+    prev.remove();
+  }
 
   var a = document.createElement("a");
   body.appendChild(a);
@@ -132,9 +143,3 @@ function download(source) {
     window.URL.revokeObjectURL(url);
   }, 10);
 }
-
-// button
-let buttonDownload = document.getElementById('download');
-buttonDownload.addEventListener('click', function() {
-  download(SVGSources[0]);
-})

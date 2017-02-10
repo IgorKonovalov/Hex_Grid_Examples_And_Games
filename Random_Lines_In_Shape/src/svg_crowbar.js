@@ -135,9 +135,6 @@ function download(source) {
 
 // button
 
-
-
-
 const buttons = document.getElementsByClassName('download')
 buttonsArray = Array.from(buttons);
 buttonsArray.forEach((button, i) => {
