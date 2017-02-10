@@ -12,7 +12,7 @@ const htmlhint = require('gulp-htmlhint');
 const DEST = 'build/';
 
 gulp.task('js', function() {
-  return gulp.src('./src/*.js')
+  return gulp.src('./clean_ver/src/*.js')
     .pipe(concat('main.js'))
     .pipe(gulp.dest(DEST))
     .pipe(babel({presets: ['es2015']}))

@@ -69,7 +69,7 @@ function drawHexSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines, bg, colo
   let columnHex = 0;
   for (let x = width / 2; x < (svgWidth - width / 2); x += widthInc) {
     let startY = ((columnHex % 2) == 0) ? height : height / 2;
-    for (let y = startY; y < (svgHeight - height); y += height) {
+    for (let y = startY; y < (svgHeight - height * .7 ); y += height) {
       const g = document.createElementNS(svgNS, 'g');
       g.setAttribute('class', 'tile');
       g.setAttribute('transform', 'translate('+ x + ',' + y + ')');

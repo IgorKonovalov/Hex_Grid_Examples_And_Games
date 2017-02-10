@@ -83,7 +83,6 @@ function drawTriangleSVG(sizeValue, offsetValue, svgWidth, svgHeight, lines, bg,
           line.setAttribute('x2', triangle[random].x);
           line.setAttribute('y2', triangle[random].y);
           line.setAttribute('stroke', color);
-
           g.appendChild(line)
         }
       });

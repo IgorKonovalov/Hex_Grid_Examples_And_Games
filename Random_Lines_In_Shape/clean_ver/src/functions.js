@@ -70,7 +70,7 @@ buttonDraw.addEventListener('click', () => {
 const buttonDownload = document.getElementById('download')
 buttonDownload.addEventListener('click', () => {
   initiateDownload();
-  download(SVGSources[0]);
+  download(SVGSources[1]);
 })
 
 // colors
