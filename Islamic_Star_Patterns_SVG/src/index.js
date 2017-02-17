@@ -1,4 +1,3 @@
-console.log('HELLO');
 const canvas = document.getElementById('test');
 const cx = canvas.getContext("2d");
 
@@ -9,4 +8,5 @@ polyTest.addVertex(200,200);
 polyTest.addVertex(100,200);
 polyTest.close();
 polyTest.show();
+
 console.log(polyTest);

@@ -3,7 +3,7 @@ function Polygon(sides) {
   this.vertices = [];
   this.edges = [];
 
-  this.addVertex = function(x, y) {
+  this.addVertex = function(x, y) { // adding vertices
     let a = new Vector(x, y);
     let total = this.vertices.length;
     if (total > 0) {
@@ -14,7 +14,7 @@ function Polygon(sides) {
     this.vertices.push(a);
   }
 
-  this.close = function() {
+  this.close = function() { // closing figure
     let total = this.vertices.length;
     let last = this.vertices[total - 1];
     let first = this.vertices[0];
@@ -24,7 +24,7 @@ function Polygon(sides) {
 
   this.hankin = function() {
     for (let i = 0; i < this.edges.length; i++) {
-      // this.edges[i].hankin(this.interiorAngle); // TODO
+      this.edges[i].hankin(this.interiorAngle);
     }
   }
 
