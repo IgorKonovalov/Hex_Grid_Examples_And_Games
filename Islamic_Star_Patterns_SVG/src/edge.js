@@ -6,15 +6,17 @@ function Edge(a, b) { // side of the polygon
 
   this.show = function() {
     // canvas ver
+    cx.strokeStyle = 'black';
     cx.beginPath();
     cx.moveTo(this.a.x, this.a.y);
     cx.lineTo(this.b.x, this.b.y);
     cx.stroke();
+    cx.closePath();
 
-    this.h1.show();
-    this.h2.show();
+    // this.h1.show();
+    // this.h2.show();
   }
 
-  // TODO: show function (canvas?), hankin object function
+  // TODO: hankin object function
 
 }

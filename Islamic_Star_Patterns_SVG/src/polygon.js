@@ -30,7 +30,7 @@ function Polygon(sides) {
 
   this.show = function() {
     for (let i = 0; i < this.edges.length; i++) {
-      this.edges[i].show(); // TODO
+      this.edges[i].show();
     }
   }
 }
