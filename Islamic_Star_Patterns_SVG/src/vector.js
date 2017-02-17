@@ -28,3 +28,11 @@ Vector.prototype.rotate = function(angle) {
 	y = ny;
 	return new Vector(x, y);
 }
+
+Vector.prototype.middle = function (end) {
+  let line = Math.sqrt(Math.pow((this.x - end.x), 2) + Math.pow((this.y - end.y),2));
+  let middleLength = line / 2;
+  x = this.x - (middleLength * (this.x - end.x)) / line;
+  y = this.y - (middleLength * (this.y - end.y)) / line;
+  return new Vector(x, y);
+}

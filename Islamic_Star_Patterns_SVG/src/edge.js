@@ -16,8 +16,7 @@ function Edge(a, b) { // side of the polygon
   }
 
   this.hankin = function(alpha) {
-    let mid = this.a.plus(b); // vector functions is in functions.js
-    mid.multiply(.5);
+    let mid = this.a.middle(b); // vector functions is in functions.js
 
     let v1 = this.a.subtract(mid); // this.a - mid is a vector from second point to first
     let v2 = this.b.subtract(mid);
@@ -25,12 +24,13 @@ function Edge(a, b) { // side of the polygon
     let offset1 = mid;
     let offset2 = mid;
 
-    let angle = Math.PI / 3;
+    let angle = Math.PI / 4;
+    
     v1.rotate(-angle);
     v2.rotate(angle);
 
     this.h1 = new Hankin(offset1, v1);
-    this.h2 = new Hankin(offset2, v2);
+    this.h2 = new Hankin(offset2, v1);
 
   }
 
