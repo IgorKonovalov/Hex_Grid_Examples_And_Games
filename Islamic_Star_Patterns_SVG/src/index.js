@@ -7,6 +7,7 @@ polyTest.addVertex(200,100);
 polyTest.addVertex(200,200);
 polyTest.addVertex(100,200);
 polyTest.close();
+polyTest.hankin();
 polyTest.show();
 
 console.log(polyTest);
