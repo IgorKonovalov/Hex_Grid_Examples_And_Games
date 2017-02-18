@@ -3,6 +3,7 @@ function Edge(a, b) { // side of the polygon
   this.b = b;
   this.h1; // hankins objects - vectors for middle points
   this.h2;
+  this.points = this.a;
 
   this.show = function() {
     // canvas ver
@@ -48,8 +49,6 @@ function Edge(a, b) { // side of the polygon
 
     v1 = v1.setMagnitude(len);
     v2 = v2.setMagnitude(len);
-
-
 
     this.h1 = new Hankin(offset1, v1);
     this.h2 = new Hankin(offset2, v2);

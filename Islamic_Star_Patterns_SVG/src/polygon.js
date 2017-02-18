@@ -28,6 +28,14 @@ function Polygon(sides) {
     }
   }
 
+  this.polygonPoints = function() {
+    let points = [];
+    for (let i = 0; i < this.edges.length; i++) {
+      points.push(this.edges[i].points);
+    }
+    return arrayToPoints(points);
+  }
+
   this.show = function() {
     for (let i = 0; i < this.edges.length; i++) {
       this.edges[i].show();
