@@ -27,18 +27,18 @@ function Edge(a, b) { // side of the polygon
     let offset2 = mid;
 
     let delta = 0;
-    //
-    // if (delta > 0) { // TODO смещение векторов hankin
-    //   v1.setMagnitude(delta);
-    //   v2.setMagnitude(delta);
-    //   offset1 = mid.plus(v1);
-    //   offset2 = mid.plus(v2);
-    // }
 
-    // v1 = v1.setMagnitude(1); // normalize vectors
-    // v2 = v2.setMagnitude(1);
+    if (delta > 0) { // TODO смещение векторов hankin
+      v1.setMagnitude(delta);
+      v2.setMagnitude(delta);
+      offset1 = mid.plus(v1);
+      offset2 = mid.plus(v2);
+    }
 
-    let angle = Math.PI / 2;
+    v1 = v1.setMagnitude(1); // normalize vectors
+    v2 = v2.setMagnitude(1);
+
+    let angle = Math.PI / 2.3;
     v1 = v1.rotate(-angle);
     v2 = v2.rotate(angle);
 
@@ -52,7 +52,7 @@ function Edge(a, b) { // side of the polygon
 
 
     this.h1 = new Hankin(offset1, v1);
-    this.h2 = new Hankin(offset2, v1);
+    this.h2 = new Hankin(offset2, v2);
 
   }
 

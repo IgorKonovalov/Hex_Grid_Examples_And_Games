@@ -11,5 +11,6 @@ polyTest.hankin();
 polyTest.show();
 
 let vector1 = new Vector(10,20);
-let vector3 = vector1.rotate(Math.PI / 2);
+let vector3 = vector1.rotate(Math.PI / 2).setMagnitude(1);
+
 console.log(vector3);
