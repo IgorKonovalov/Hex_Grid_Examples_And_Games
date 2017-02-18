@@ -30,7 +30,7 @@ for (let x = 0; x < 600; x += 100) {
     const cell = document.createElementNS(svgNS, 'polygon');
     cell.setAttribute('points', polyTest.getPolygonPoints());
     const hankins = document.createElementNS(svgNS, 'polygon');
-    //g.appendChild(cell);
+    g.appendChild(cell);
     for (let i = 4; i < hankinsCoord.length ; i += 4) {
       const line = document.createElementNS(svgNS, 'line');
       line.setAttribute('x1', hankinsCoord[i-4]);

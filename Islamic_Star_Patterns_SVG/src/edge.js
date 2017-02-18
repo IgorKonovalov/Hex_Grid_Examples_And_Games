@@ -30,23 +30,23 @@ function Edge(a, b) { // side of the polygon
 
     let delta = 10;
 
-    if (delta > 0) { // TODO смещение векторов hankin
-      v1Delta = v1.setMagnitude(delta);
-      v2Delta = v2.setMagnitude(delta);
-      offset1 = mid.plus(v1Delta);
-      offset2 = mid.plus(v2Delta);
+    if (delta != 0) { // TODO
+      v1 = v1.setMagnitude(Math.abs(delta));
+      v2 = v2.setMagnitude(Math.abs(delta));
+      offset1 = mid.plus(v1);
+      offset2 = mid.plus(v2);
     }
 
     v1 = v1.setMagnitude(1); // normalize vectors
     v2 = v2.setMagnitude(1);
 
-    let angle = Math.PI / 3;
+    let angle = Math.PI / 2.8;
     v1 = v1.rotate(-angle);
     v2 = v2.rotate(angle);
 
     alpha = alpha / 2;
     let beta = Math.PI - alpha - angle;
-    let len = Math.sin(alpha) * ((halfLength + delta) / Math.sin(beta));
+    let len = Math.sin(alpha) * ((halfLength - Math.abs(delta)) / Math.sin(beta));
 
     v1 = v1.setMagnitude(len);
     v2 = v2.setMagnitude(len);
