@@ -2,6 +2,7 @@ function Hankin(a, v) {
   this.a = a;
   this.v = v;
   this.end = a.plus(v);
+  this.coord = [this.a, this.end];
 
   this.show = function() {
     cx.beginPath();
@@ -9,4 +10,5 @@ function Hankin(a, v) {
     cx.lineTo(this.end.x, this.end.y);
     cx.stroke();
   }
+
 }

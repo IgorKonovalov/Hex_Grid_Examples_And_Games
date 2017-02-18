@@ -36,6 +36,14 @@ function Polygon(sides) {
     return arrayToPoints(points);
   }
 
+  this.getHankins = function() {
+    let hankins = [];
+    for (let i = 0; i < this.edges.length; i++) {
+      hankins.push(this.edges[i].hankins);
+    }
+    return hankins;
+  }
+
   this.show = function() {
     for (let i = 0; i < this.edges.length; i++) {
       this.edges[i].show();

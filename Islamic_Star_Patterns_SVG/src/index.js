@@ -9,7 +9,8 @@ polyTest.addVertex(50,150);
 polyTest.close();
 polyTest.hankin();
 polyTest.show();
-console.log(polyTest.polygonPoints());
+
+console.log(polyTest.getHankins());
 
 const container = document.getElementById('svgContainer');
 const svgNS = 'http://www.w3.org/2000/svg';
