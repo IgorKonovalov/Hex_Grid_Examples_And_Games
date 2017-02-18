@@ -28,7 +28,7 @@ function Polygon(sides) {
     }
   }
 
-  this.polygonPoints = function() {
+  this.getPolygonPoints = function() {
     let points = [];
     for (let i = 0; i < this.edges.length; i++) {
       points.push(this.edges[i].points);
@@ -38,10 +38,18 @@ function Polygon(sides) {
 
   this.getHankins = function() {
     let hankins = [];
+    // first lets get all the vectors
     for (let i = 0; i < this.edges.length; i++) {
       hankins.push(this.edges[i].hankins);
     }
-    return hankins;
+    // second let's condence array of coordinates
+    hankins = hankins.reduce(function (a, b) {
+      return a.concat(b);
+    }).reduce(function (a, b) {
+      return a.concat(b);
+    });
+    console.log(arrayToPoints(hankins));
+    return arrayToPoints(hankins).split(' '); // and convert then into string (we are using only coordinates part)
   }
 
   this.show = function() {

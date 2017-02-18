@@ -28,19 +28,19 @@ function Edge(a, b) { // side of the polygon
     let offset1 = mid;
     let offset2 = mid;
 
-    let delta = 0;
+    let delta = 10;
 
     if (delta > 0) { // TODO смещение векторов hankin
-      v1.setMagnitude(delta);
-      v2.setMagnitude(delta);
-      offset1 = mid.plus(v1);
-      offset2 = mid.plus(v2);
+      v1Delta = v1.setMagnitude(delta);
+      v2Delta = v2.setMagnitude(delta);
+      offset1 = mid.plus(v1Delta);
+      offset2 = mid.plus(v2Delta);
     }
 
     v1 = v1.setMagnitude(1); // normalize vectors
     v2 = v2.setMagnitude(1);
 
-    let angle = Math.PI / 2.3;
+    let angle = Math.PI / 3;
     v1 = v1.rotate(-angle);
     v2 = v2.rotate(angle);
 
