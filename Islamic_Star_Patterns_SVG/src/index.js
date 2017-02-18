@@ -10,4 +10,6 @@ polyTest.close();
 polyTest.hankin();
 polyTest.show();
 
-console.log(polyTest);
+let vector1 = new Vector(10,20);
+let vector3 = vector1.rotate(Math.PI / 2);
+console.log(vector3);
