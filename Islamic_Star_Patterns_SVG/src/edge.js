@@ -1,7 +1,7 @@
 function Edge(a, b) { // side of the polygon
   this.a = a;
   this.b = b;
-  this.h1; // hankins objects - vectors for middle points
+  this.h1; // hankin objects - vectors for middle points
   this.h2;
   this.points = this.a;
   this.hankins = [];
@@ -11,7 +11,7 @@ function Edge(a, b) { // side of the polygon
     cx.beginPath();
     cx.moveTo(this.a.x, this.a.y);
     cx.lineTo(this.b.x, this.b.y);
-    cx.stroke();
+    //cx.stroke();
 
     this.h1.show();
     this.h2.show();
@@ -28,9 +28,8 @@ function Edge(a, b) { // side of the polygon
     let offset1 = mid;
     let offset2 = mid;
 
-    let delta = 10;
 
-    if (delta > 0) { // TODO
+    if (delta > 0) {
       v1 = v1.setMagnitude(Math.abs(delta));
       v2 = v2.setMagnitude(Math.abs(delta));
       offset1 = mid.plus(v2);
@@ -40,7 +39,7 @@ function Edge(a, b) { // side of the polygon
     v1 = v1.setMagnitude(1); // normalize vectors
     v2 = v2.setMagnitude(1);
 
-    let angle = Math.PI / 2.6;
+
     v1 = v1.rotate(-angle);
     v2 = v2.rotate(angle);
 

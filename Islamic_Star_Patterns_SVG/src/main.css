@@ -9,6 +9,7 @@
 }
 
 .tile line {
-  stroke: hsla(0, 0%, 0%, 0.62);
-  stroke-width: 1.5;
+  stroke: hsla(205, 100%, 50%, 1);
+  stroke-width: 2.5;
+  stroke-linecap: round;
 }

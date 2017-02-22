@@ -48,7 +48,6 @@ function Polygon(sides) {
     }).reduce(function (a, b) {
       return a.concat(b);
     });
-    console.log(arrayToPoints(hankins));
     return arrayToPoints(hankins).split(' '); // and convert then into string (we are using only coordinates part)
   }
 
