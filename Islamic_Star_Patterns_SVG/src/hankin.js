@@ -6,6 +6,8 @@ function Hankin(a, v) {
 
   this.show = function() {
     cx.beginPath();
+    cx.lineWidth = 1.5;
+    cx.strokeStyle = "violet";
     cx.moveTo(this.a.x, this.a.y);
     cx.lineTo(this.end.x, this.end.y);
     cx.stroke();

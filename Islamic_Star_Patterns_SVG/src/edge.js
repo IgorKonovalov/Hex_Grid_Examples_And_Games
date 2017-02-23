@@ -9,9 +9,11 @@ function Edge(a, b) { // side of the polygon
   this.show = function() {
     // canvas ver
     cx.beginPath();
+    cx.lineWidth = 0.2;
+    cx.strokeStyle = "white"; 
     cx.moveTo(this.a.x, this.a.y);
     cx.lineTo(this.b.x, this.b.y);
-    //cx.stroke();
+    cx.stroke();
 
     this.h1.show();
     this.h2.show();
