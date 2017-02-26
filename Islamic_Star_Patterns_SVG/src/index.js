@@ -34,9 +34,15 @@ function squareTiling() {
   }
 }
 
+// squareTiling();
 
+function hexTiling() {
+  var hexTiles = new HexagonalTiling(50);
+  hexTiles.buildGrid();
+  polygons = hexTiles.polys;
+}
 
-squareTiling();
+hexTiling();
 
 // попробуем отрисовку на канвасе
 
