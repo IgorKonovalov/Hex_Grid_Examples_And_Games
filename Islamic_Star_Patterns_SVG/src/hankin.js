@@ -2,7 +2,6 @@ function Hankin(a, v) {
   this.a = a;
   this.v = v;
   this.end = a.plus(v);
-  this.coord = [this.a, this.end];
 
 
   this.show = function() {

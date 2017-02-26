@@ -3,13 +3,13 @@
 }
 .tile polygon {
     pointer-events: visiblePainted;
-    fill: hsl(60, 10%, 95%);
+    fill: hsla(279, 100%, 4%, 1);
     stroke: hsla(0, 0%, 0%, 0.62);
     stroke-width: .5;
 }
 
 .tile line {
-  stroke: hsla(205, 100%, 50%, 1);
+  stroke: hsla(100, 30%, 50%, 1);
   stroke-width: 1.5;
   stroke-linecap: round;
 }

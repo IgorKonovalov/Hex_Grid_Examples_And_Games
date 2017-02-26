@@ -50,9 +50,11 @@ function drawCanvas() {
 
 deltaR.addEventListener('mousemove', function () {
   drawCanvas();
+  drawSVGhankins();
 })
 angleR.addEventListener('mousemove', function () {
   drawCanvas();
+  drawSVGhankins();
 })
 
 drawCanvas();
@@ -83,9 +85,11 @@ drawSVGGrid();
 
 function drawSVGhankins() {
   polygons.forEach((poly, i) => {
+    delta = Number(deltaR.value);
+    angle = Math.PI / angleR.value;
     const g = document.getElementsByTagName('g')[i];
     const lines = Array.prototype.slice.call(g.childNodes).slice(1);
-    const hankinsCoord = poly.getHankins();
+    let hankinsCoord = poly.getHankins();
     let count = 4;
     for (let i = 0; i < lines.length ; i++) {
       lines[i].setAttribute('x1', hankinsCoord[count-4]);
@@ -94,8 +98,7 @@ function drawSVGhankins() {
       lines[i].setAttribute('y2', hankinsCoord[count-1]);
       count +=4
     }
-
   });
 }
 
-drawSVGhankins()
+drawSVGhankins();

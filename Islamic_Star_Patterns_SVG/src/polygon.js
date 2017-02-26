@@ -38,17 +38,20 @@ function Polygon(sides) {
 
   this.getHankins = function() {
     let hankins = [];
-    // first lets get all the vectors
     for (let i = 0; i < this.edges.length; i++) {
-      hankins.push(this.edges[i].hankins);
+      this.edges[i].hankin(this.interiorAngle);
+      let h1 = this.edges[i].h1;
+      let h2 = this.edges[i].h2;
+      hankins.push(h1.a.x);
+      hankins.push(h1.a.y);
+      hankins.push(h1.end.x);
+      hankins.push(h1.end.y);
+      hankins.push(h2.a.x);
+      hankins.push(h2.a.y);
+      hankins.push(h2.end.x);
+      hankins.push(h2.end.y);
     }
-    // second let's condence array of coordinates
-    hankins = hankins.reduce(function (a, b) {
-      return a.concat(b);
-    }).reduce(function (a, b) {
-      return a.concat(b);
-    });
-    return arrayToPoints(hankins).split(' '); // and convert then into string (we are using only coordinates part)
+    return hankins;
   }
 
   this.show = function() {
