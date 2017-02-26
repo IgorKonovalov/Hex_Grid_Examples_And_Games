@@ -4,6 +4,7 @@ function Edge(a, b) { // side of the polygon
   this.h1; // hankin objects - vectors for middle points
   this.h2;
   this.points = this.a;
+  this.length = Math.sqrt(Math.pow((this.a.x - this.b.x), 2) + Math.pow((this.a.y - this.b.y), 2));
 
   this.hankin = function(alpha) {
     let mid = this.a.plus(this.b).multiply(.5); // middle between vertices
@@ -14,6 +15,7 @@ function Edge(a, b) { // side of the polygon
     let offset2 = mid;
 
     if (delta > 0) {
+      if (delta > this.length / 2) delta = this.length / 2;
       v1 = v1.setMagnitude(Math.abs(delta));
       v2 = v2.setMagnitude(Math.abs(delta));
       offset1 = mid.plus(v2);
