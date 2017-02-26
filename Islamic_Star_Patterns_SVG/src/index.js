@@ -37,14 +37,20 @@ function squareTiling() {
 // squareTiling();
 
 function hexTiling() {
-  var hexTiles = new HexagonalTiling(50);
+  var hexTiles = new HexagonalTiling(60);
   hexTiles.buildGrid();
   polygons = hexTiles.polys;
 }
 
 hexTiling();
 
-// попробуем отрисовку на канвасе
+function hexTriangleSquareTiling() {
+  var tiles = new HexaTriangleSquareTiling(50);
+  tiles.buildGrid();
+  polys = tiles.polys;
+}
+
+// hexTriangleSquareTiling();
 
 deltaR.addEventListener('mousemove', function () {
   drawSVGhankins();

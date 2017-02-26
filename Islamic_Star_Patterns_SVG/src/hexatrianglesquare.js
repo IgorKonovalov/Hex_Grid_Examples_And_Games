@@ -1,3 +1,19 @@
+function build_poly(x,y,r,sides,init_angle) {
+    p = new Polygon(sides);
+    if(!init_angle)init_angle = 0;
+    // rotate 360 degrees around the clock in 60 degree increments
+    var inc = 2 * Math.PI / sides;
+    for (var index = 0; index < sides; index++) {
+      // angular to cartesian
+      var θ = (index * inc) - inc / 2+init_angle;
+      var vX = x + r * Math.cos(θ);
+      var vY = y + r * Math.sin(θ);
+      p.addVertex(vX, vY);
+    }
+    p.close();
+    return p;
+}
+
 function HexaTriangleSquareTiling(r) {
   this.r = r;
   this.polys = [];
@@ -19,16 +35,17 @@ function HexaTriangleSquareTiling(r) {
     this.polys.push(p);
     var d4 = this.h6+this.h4;
     var d3 = this.r3+this.r;
-    var D4A = p5.Vector.fromAngle(Math.PI/6);
-    var D4B = p5.Vector.fromAngle(Math.PI/2);
-    var D4C = p5.Vector.fromAngle(-Math.PI/6);
-    D4A.setMag(d4);
-    D4B.setMag(d4);
-    D4C.setMag(d4);
-    var D3A = p5.Vector.fromAngle(0);
-    var D3B = p5.Vector.fromAngle(Math.PI/3);
-    D3A.setMag(d3);
-    D3B.setMag(d3);
+    const vector = new Vector(1,1);
+    var D4A = vector.rotate(Math.PI/6);
+    var D4B = vector.rotate(Math.PI/2);
+    var D4C = vector.rotate(-Math.PI/6);
+    D4A = D4A.setMagnitude(d4);
+    D4B = D4B.setMagnitude(d4);
+    D4C = D4C.setMagnitude(d4);
+    var D3A = vector.rotate(0);
+    var D3B = vector.rotate(Math.PI/3);
+    D3A = D3A.setMagnitude(d3);
+    D3B = D3B.setMagnitude(d3);
     // p = build_poly(x-d3,y,this.r3,3);
     // this.polys.push(p);
     p = build_poly(x+D3A.x,y+D3A.y,this.r3,3);
