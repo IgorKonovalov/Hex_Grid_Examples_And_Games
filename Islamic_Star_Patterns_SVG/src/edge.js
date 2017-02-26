@@ -5,30 +5,13 @@ function Edge(a, b) { // side of the polygon
   this.h2;
   this.points = this.a;
 
-  this.show = function() {
-    // canvas ver
-    cx.beginPath();
-    cx.lineWidth = 0.2;
-    cx.strokeStyle = "white";
-    cx.moveTo(this.a.x, this.a.y);
-    cx.lineTo(this.b.x, this.b.y);
-    cx.stroke();
-
-    this.h1.show();
-    this.h2.show();
-  }
-
   this.hankin = function(alpha) {
     let mid = this.a.plus(this.b).multiply(.5); // middle between vertices
-
     let v1 = this.a.subtract(mid); // (this.a - mid) is a vector from second point to first
     let v2 = this.b.subtract(mid);
-
     let halfLength = v1.length;
-
     let offset1 = mid;
     let offset2 = mid;
-
 
     if (delta > 0) {
       v1 = v1.setMagnitude(Math.abs(delta));

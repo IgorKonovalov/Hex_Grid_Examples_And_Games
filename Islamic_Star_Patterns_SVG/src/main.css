@@ -4,7 +4,7 @@
 .tile polygon {
     pointer-events: visiblePainted;
     fill: hsla(279, 100%, 4%, 1);
-    stroke: hsla(0, 0%, 0%, 0.62);
+    stroke: hsla(0, 100%, 100%, 1);
     stroke-width: .5;
 }
 

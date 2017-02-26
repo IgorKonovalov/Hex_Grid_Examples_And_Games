@@ -1,5 +1,5 @@
 const canvas = document.getElementById('test');
-const cx = canvas.getContext("2d");
+// const cx = canvas.getContext("2d");
 
 const container = document.getElementById('svgContainer');
 const svgNS = 'http://www.w3.org/2000/svg';
@@ -34,34 +34,19 @@ function squareTiling() {
   }
 }
 
+
+
 squareTiling();
 
 // попробуем отрисовку на канвасе
 
-function drawCanvas() {
-  cx.clearRect(0, 0, canvas.width, canvas.height);
-  polygons.forEach((poly)=> {
-    delta = Number(deltaR.value);
-    angle = Math.PI / angleR.value;
-    poly.hankin();
-    poly.show();
-  })
-}
-
 deltaR.addEventListener('mousemove', function () {
-  drawCanvas();
   drawSVGhankins();
 })
 angleR.addEventListener('mousemove', function () {
-  drawCanvas();
   drawSVGhankins();
 })
 
-drawCanvas();
-
- // TODO: теперь, когда есть базовый вывод - нужно разделить создание объекта, отрисовку объекта и отрисовку отдельных линий внутри, то есть, сначала создаем объекты и выводим их, затем уже отдельно рисуем ханкины, отдельно для каждого объекта, либо перерисовываем при изменении range
-
- // то есть, создаем мы сетку не трансформом, а отдельными координатами для каждого объекта!
 
 
 function drawSVGGrid() { // creating grid with polygons and lines
