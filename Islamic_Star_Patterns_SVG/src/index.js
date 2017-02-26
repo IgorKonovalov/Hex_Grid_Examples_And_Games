@@ -61,28 +61,15 @@ drawCanvas();
 
  // то есть, создаем мы сетку не трансформом, а отдельными координатами для каждого объекта!
 
- // let hankinsCoord = polygons[0].getHankins(); TODO - заготовка для hankins
 
- // const hankins = document.createElementNS(svgNS, 'polygon');
- //
- // for (let i = 4; i < hankinsCoord.length ; i += 4) {
- //   const line = document.createElementNS(svgNS, 'line');
- //   line.setAttribute('x1', hankinsCoord[i-4]);
- //   line.setAttribute('y1', hankinsCoord[i-3]);
- //   line.setAttribute('x2', hankinsCoord[i-2]);
- //   line.setAttribute('y2', hankinsCoord[i-1]);
- //   g.appendChild(line)
- // }
- // g.appendChild(hankins);
-
-function drawSVGGrid() { // функция рисует SVG сетку
+function drawSVGGrid() { // creating grid with polygons and lines
   polygons.forEach((poly) => {
-    const g = document.createElementNS(svgNS, 'g');
+    const g = document.createElementNS(svgNS, 'g'); // container for SVG polygon and line
     g.setAttribute('class', 'tile');
     const cell = document.createElementNS(svgNS, 'polygon');
     cell.setAttribute('points', poly.getPolygonPoints());
     g.appendChild(cell);
-    for (let i = 0; i < poly.edges.length ; i ++) {
+    for (let i = 0; i < poly.edges.length * 2 ; i ++) {
       const line = document.createElementNS(svgNS, 'line');
       g.appendChild(line)
     }
@@ -96,7 +83,19 @@ drawSVGGrid();
 
 function drawSVGhankins() {
   polygons.forEach((poly, i) => {
-    const g = document.getElementsByClassName('g')[i];
+    const g = document.getElementsByTagName('g')[i];
+    const lines = Array.prototype.slice.call(g.childNodes).slice(1);
+    const hankinsCoord = poly.getHankins();
+    let count = 4;
+    for (let i = 0; i < lines.length ; i++) {
+      lines[i].setAttribute('x1', hankinsCoord[count-4]);
+      lines[i].setAttribute('y1', hankinsCoord[count-3]);
+      lines[i].setAttribute('x2', hankinsCoord[count-2]);
+      lines[i].setAttribute('y2', hankinsCoord[count-1]);
+      count +=4
+    }
 
   });
 }
+
+drawSVGhankins()
