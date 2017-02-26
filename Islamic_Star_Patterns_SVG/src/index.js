@@ -71,7 +71,6 @@ drawCanvas();
  //   line.setAttribute('y1', hankinsCoord[i-3]);
  //   line.setAttribute('x2', hankinsCoord[i-2]);
  //   line.setAttribute('y2', hankinsCoord[i-1]);
- //   // line.setAttribute('stroke-linecap', 'round');
  //   g.appendChild(line)
  // }
  // g.appendChild(hankins);
@@ -83,10 +82,21 @@ function drawSVGGrid() { // функция рисует SVG сетку
     const cell = document.createElementNS(svgNS, 'polygon');
     cell.setAttribute('points', poly.getPolygonPoints());
     g.appendChild(cell);
+    for (let i = 0; i < poly.edges.length ; i ++) {
+      const line = document.createElementNS(svgNS, 'line');
+      g.appendChild(line)
+    }
     svg.appendChild(g);
   });
+  container.appendChild(svg);
 }
 
 
 drawSVGGrid();
-container.appendChild(svg);
+
+function drawSVGhankins() {
+  polygons.forEach((poly, i) => {
+    const g = document.getElementsByClassName('g')[i];
+
+  });
+}
